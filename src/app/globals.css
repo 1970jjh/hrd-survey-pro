@@ -1,30 +1,33 @@
 @import "tailwindcss";
 
-/* PRD 디자인 시스템 - 컬러 팔레트 */
+/* Brutalism Design System - Bold & Raw */
 :root {
-  /* Primary Colors */
-  --color-primary: #4f46e5;
-  --color-primary-light: #6366f1;
-  --color-primary-dark: #4338ca;
+  /* Primary Colors - Blue */
+  --color-primary: #2563eb;
+  --color-primary-light: #3b82f6;
+  --color-primary-dark: #1d4ed8;
 
-  /* Secondary Colors */
-  --color-secondary: #10b981;
-  --color-secondary-light: #34d399;
-  --color-secondary-dark: #059669;
+  /* Secondary Colors - Deep Purple */
+  --color-secondary: #7c3aed;
+  --color-secondary-light: #8b5cf6;
+  --color-secondary-dark: #6d28d9;
 
   /* Accent */
-  --color-accent: #f59e0b;
+  --color-accent: #fbbf24;
 
   /* Neutral Colors */
-  --color-background: #f8fafc;
-  --color-foreground: #1e293b;
-  --color-muted: #64748b;
-  --color-border: #e2e8f0;
+  --color-background: #fafafa;
+  --color-foreground: #0a0a0a;
+  --color-muted: #525252;
+  --color-border: #0a0a0a;
 
-  /* Glass Effect */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-blur: 10px;
+  /* Brutalist specific */
+  --brutal-border: 3px solid #0a0a0a;
+  --brutal-shadow: 4px 4px 0px #0a0a0a;
+  --brutal-shadow-sm: 2px 2px 0px #0a0a0a;
+  --brutal-shadow-lg: 6px 6px 0px #0a0a0a;
+  --brutal-shadow-primary: 4px 4px 0px var(--color-primary-dark);
+  --brutal-shadow-secondary: 4px 4px 0px var(--color-secondary-dark);
 }
 
 @theme inline {
@@ -33,135 +36,165 @@
   --font-sans: var(--font-noto-sans-kr);
 }
 
-/* Glassmorphism 유틸리티 클래스 */
+/* Brutalist Card - Sharp edges, hard shadows */
 .glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-radius: 16px;
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  border: var(--brutal-border);
+  box-shadow: var(--brutal-shadow);
+  border-radius: 0;
 }
 
 .glass-card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 .glass-card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #0a0a0a;
 }
 
-/* 버튼 스타일 */
+/* Primary Button - Bold and brutal */
 .btn-primary {
   background-color: var(--color-primary);
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  border: var(--brutal-border);
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--brutal-shadow);
+  transition: all 0.1s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--color-primary-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--brutal-shadow-lg);
 }
 
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Secondary Button */
 .btn-secondary {
   background-color: var(--color-secondary);
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  border: var(--brutal-border);
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--brutal-shadow);
+  transition: all 0.1s ease;
 }
 
 .btn-secondary:hover {
   background-color: var(--color-secondary-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--brutal-shadow-lg);
 }
 
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Ghost Button */
 .btn-ghost {
-  background-color: transparent;
+  background-color: white;
   color: var(--color-foreground);
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  border: 1px solid var(--color-border);
+  border: var(--brutal-border);
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--brutal-shadow);
+  transition: all 0.1s ease;
 }
 
 .btn-ghost:hover {
   background-color: var(--color-background);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--brutal-shadow-lg);
 }
 
-/* 입력 필드 스타일 */
+.btn-ghost:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Input Field - Brutalist style */
 .input-field {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
+  border: var(--brutal-border);
+  border-radius: 0;
   background-color: white;
   color: var(--color-foreground);
-  transition: all 0.2s ease;
+  font-weight: 500;
+  transition: all 0.1s ease;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: var(--brutal-shadow);
+  transform: translate(-2px, -2px);
 }
 
-/* Likert 척도 스타일 */
+/* Likert Scale - Brutalist */
 .likert-option {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--color-border);
+  border-radius: 0;
+  border: var(--brutal-border);
   background: white;
-  font-weight: 600;
-  color: var(--color-muted);
+  font-weight: 800;
+  color: var(--color-foreground);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
+  box-shadow: var(--brutal-shadow-sm);
 }
 
 .likert-option:hover {
-  border-color: var(--color-primary-light);
-  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--brutal-shadow);
 }
 
 .likert-option.selected {
   background: var(--color-primary);
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-dark);
   color: white;
+  box-shadow: var(--brutal-shadow-primary);
 }
 
-/* 프로그레스 바 */
+/* Progress Bar - Brutalist */
 .progress-bar {
   width: 100%;
-  height: 8px;
-  background-color: var(--color-border);
-  border-radius: 4px;
+  height: 12px;
+  background-color: white;
+  border: var(--brutal-border);
+  border-radius: 0;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-secondary)
-  );
-  border-radius: 4px;
+  background: var(--color-primary);
+  border-radius: 0;
   transition: width 0.3s ease;
 }
 
-/* 반응형 그리드 */
+/* Dashboard Grid */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -180,33 +213,38 @@
   }
 }
 
-/* 기본 Body 스타일 */
+/* Body Style - Brutalist background */
 body {
-  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f5f3ff 100%);
+  background-color: var(--color-background);
+  background-image:
+    linear-gradient(90deg, #e5e5e5 1px, transparent 1px),
+    linear-gradient(#e5e5e5 1px, transparent 1px);
+  background-size: 20px 20px;
   color: var(--color-foreground);
   min-height: 100vh;
 }
 
-/* 스크롤바 스타일 */
+/* Scrollbar - Brutalist */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--color-background);
+  border-left: var(--brutal-border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-muted);
-  border-radius: 4px;
+  background: var(--color-primary);
+  border: 2px solid #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--color-secondary);
 }
 
-/* 애니메이션 */
+/* Animations - Quick and snappy */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -219,7 +257,7 @@ body {
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.2s ease-out;
 }
 
 @keyframes fadeInUp {
@@ -234,7 +272,7 @@ body {
 }
 
 .animate-fadeInUp {
-  animation: fadeInUp 0.4s ease-out;
+  animation: fadeInUp 0.2s ease-out;
 }
 
 @keyframes slideUp {
@@ -249,7 +287,7 @@ body {
 }
 
 .animate-slideUp {
-  animation: slideUp 0.3s ease-out;
+  animation: slideUp 0.2s ease-out;
 }
 
 @keyframes slideIn {
@@ -264,7 +302,7 @@ body {
 }
 
 .animate-slideIn {
-  animation: slideIn 0.3s ease-out;
+  animation: slideIn 0.2s ease-out;
 }
 
 @keyframes scaleIn {
@@ -279,7 +317,7 @@ body {
 }
 
 .animate-scaleIn {
-  animation: scaleIn 0.2s ease-out;
+  animation: scaleIn 0.15s ease-out;
 }
 
 @keyframes bounce {
@@ -320,57 +358,81 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #f0f0f0 25%, #d4d4d4 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
 
-/* 트랜지션 유틸리티 */
+/* Transition utilities */
 .transition-fast {
-  transition: all 0.15s ease;
+  transition: all 0.1s ease;
 }
 
 .transition-normal {
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .transition-slow {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-/* 호버 효과 */
+/* Hover Effects - Brutalist */
 .hover-lift {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: all 0.1s ease;
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: translate(-4px, -4px);
+  box-shadow: var(--brutal-shadow-lg);
 }
 
 .hover-glow {
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.1s ease;
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 0 0 4px var(--color-primary);
 }
 
-/* 스켈레톤 로딩 */
+/* Skeleton Loading - Brutalist */
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #e5e5e5 25%, #d4d4d4 50%, #e5e5e5 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 8px;
+  border: 2px solid #0a0a0a;
+  border-radius: 0;
 }
 
-/* 포커스 스타일 */
+/* Focus Style - Brutalist */
 .focus-ring {
   outline: none;
 }
 
 .focus-ring:focus-visible {
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 0 0 4px var(--color-primary);
+}
+
+/* Brutalist Badge */
+.brutal-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid #0a0a0a;
+  box-shadow: 2px 2px 0px #0a0a0a;
+}
+
+/* Brutalist Tag */
+.brutal-tag {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 2px solid #0a0a0a;
+  background: var(--color-accent);
 }

@@ -134,10 +134,10 @@ export default function SurveyResponseContent({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--color-background)]">
         <div className="text-center">
-          <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4" />
-          <p className="text-gray-600">설문을 불러오는 중...</p>
+          <div className="w-16 h-16 border-4 border-black border-t-[var(--color-primary)] animate-spin mx-auto mb-4" />
+          <p className="font-bold uppercase tracking-wide text-black">설문을 불러오는 중...</p>
         </div>
       </div>
     );
@@ -145,13 +145,13 @@ export default function SurveyResponseContent({
 
   if (error && !survey) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center">
-          <div className="text-5xl mb-4">😢</div>
-          <h1 className="text-xl font-bold text-gray-800 mb-2">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--color-background)] p-4">
+        <div className="bg-white border-3 border-black shadow-[8px_8px_0px_#0a0a0a] p-8 max-w-md w-full text-center">
+          <div className="text-6xl mb-4 font-black">[X]</div>
+          <h1 className="text-xl font-black uppercase text-black mb-2">
             설문에 접근할 수 없습니다
           </h1>
-          <p className="text-gray-600">{error}</p>
+          <p className="font-bold text-gray-600">{error}</p>
         </div>
       </div>
     );
@@ -159,11 +159,13 @@ export default function SurveyResponseContent({
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100 p-4">
-        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center animate-fadeIn">
-          <div className="text-6xl mb-4">🎉</div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">감사합니다!</h1>
-          <p className="text-gray-600 mb-4">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--color-background)] p-4">
+        <div className="bg-white border-3 border-black shadow-[8px_8px_0px_#0a0a0a] p-8 max-w-md w-full text-center animate-fadeIn">
+          <div className="w-20 h-20 bg-green-400 border-3 border-black shadow-[4px_4px_0px_#0a0a0a] mx-auto mb-4 flex items-center justify-center">
+            <span className="text-4xl font-black text-black">✓</span>
+          </div>
+          <h1 className="text-2xl font-black uppercase text-black mb-2">감사합니다!</h1>
+          <p className="font-bold text-gray-600 mb-4">
             소중한 의견이 성공적으로 제출되었습니다.
           </p>
           <p className="text-sm text-gray-500">
@@ -180,39 +182,41 @@ export default function SurveyResponseContent({
   // Intro screen
   if (currentStep === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 flex items-center justify-center">
-        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-lg w-full animate-fadeIn">
+      <div className="min-h-screen bg-[var(--color-background)] p-4 flex items-center justify-center">
+        <div className="bg-white border-3 border-black shadow-[8px_8px_0px_#0a0a0a] p-8 max-w-lg w-full animate-fadeIn">
           <div className="text-center mb-6">
-            <div className="text-5xl mb-4">📋</div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">
+            <div className="w-16 h-16 bg-[var(--color-primary)] border-3 border-black shadow-[4px_4px_0px_#0a0a0a] mx-auto mb-4 flex items-center justify-center">
+              <span className="text-3xl font-black text-white">?</span>
+            </div>
+            <h1 className="text-2xl font-black uppercase text-black mb-2">
               {survey.title}
             </h1>
             {survey.description && (
-              <p className="text-gray-600 mb-4">{survey.description}</p>
+              <p className="text-gray-600 font-bold mb-4">{survey.description}</p>
             )}
           </div>
 
-          <div className="bg-blue-50 rounded-xl p-4 mb-6">
-            <h2 className="font-medium text-gray-700 mb-2">교육과정 정보</h2>
-            <p className="text-blue-700 font-semibold">{survey.course.title}</p>
+          <div className="bg-[var(--color-primary)] border-3 border-black shadow-[4px_4px_0px_#0a0a0a] p-4 mb-6">
+            <h2 className="font-black text-white uppercase mb-1">교육과정 정보</h2>
+            <p className="text-white font-bold">{survey.course.title}</p>
             {survey.course.instructor && (
-              <p className="text-gray-600 text-sm">
+              <p className="text-white/80 text-sm font-bold">
                 강사: {survey.course.instructor}
               </p>
             )}
           </div>
 
-          <div className="text-center text-sm text-gray-500 mb-6">
+          <div className="text-center text-sm font-bold text-gray-600 mb-6 space-y-1">
             <p>총 {survey.questions.length}개 문항</p>
             <p>예상 소요 시간: {Math.ceil(survey.questions.length / 3)}분</p>
             <p className="mt-2">
               {survey.is_anonymous ? (
-                <span className="inline-flex items-center gap-1 text-green-600">
-                  <span>🔒</span> 무기명 설문
+                <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-400 border-2 border-black text-black uppercase text-xs">
+                  [🔒] 무기명 설문
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 text-blue-600">
-                  <span>👤</span> 기명 설문
+                <span className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--color-secondary)] border-2 border-black text-white uppercase text-xs">
+                  [👤] 기명 설문
                 </span>
               )}
             </p>
@@ -221,7 +225,7 @@ export default function SurveyResponseContent({
           {/* 기명 설문인 경우 이름 입력 */}
           {!survey.is_anonymous && (
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-black uppercase tracking-wide text-black mb-2">
                 이름을 입력해주세요 <span className="text-red-500">*</span>
               </label>
               <input
@@ -229,7 +233,7 @@ export default function SurveyResponseContent({
                 value={respondentName}
                 onChange={(e) => setRespondentName(e.target.value)}
                 placeholder="홍길동"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border-3 border-black font-bold focus:shadow-[4px_4px_0px_#0a0a0a] focus:translate-x-[-2px] focus:translate-y-[-2px] transition-all duration-100 focus:outline-none"
               />
             </div>
           )}
@@ -243,12 +247,12 @@ export default function SurveyResponseContent({
               setError("");
               setCurrentStep(1);
             }}
-            className="w-full py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
+            className="w-full py-4 bg-[var(--color-primary)] text-white font-black uppercase tracking-wide border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100"
           >
             설문 시작하기
           </button>
           {error && (
-            <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+            <p className="text-red-500 text-sm text-center mt-2 font-bold uppercase">{error}</p>
           )}
         </div>
       </div>
@@ -257,37 +261,37 @@ export default function SurveyResponseContent({
 
   // Questions screen
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-[var(--color-background)]">
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 z-10 bg-white shadow-sm">
-        <div className="h-1 bg-gray-200">
+      <div className="fixed top-0 left-0 right-0 z-10 bg-white border-b-3 border-black">
+        <div className="h-3 bg-gray-200">
           <div
-            className="h-full bg-blue-600 transition-all duration-300"
+            className="h-full bg-[var(--color-primary)] transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
         <div className="px-4 py-2 flex items-center justify-between">
-          <span className="text-sm text-gray-600">
+          <span className="text-sm font-bold text-black uppercase">
             {Object.keys(answers).length} / {survey.questions.length} 응답 완료
           </span>
-          <span className="text-sm font-medium text-blue-600">{progress}%</span>
+          <span className="text-sm font-black text-[var(--color-primary)]">{progress}%</span>
         </div>
       </div>
 
       {/* Questions */}
-      <div className="pt-16 pb-24 px-4">
+      <div className="pt-20 pb-28 px-4">
         <div className="max-w-lg mx-auto space-y-6">
           {survey.questions.map((question, index) => (
             <div
               key={question.id}
-              className="bg-white rounded-2xl shadow-lg p-6 animate-fadeIn"
+              className="bg-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a] p-6 animate-fadeIn"
             >
               <div className="flex items-start gap-3 mb-4">
-                <span className="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-medium">
+                <span className="flex-shrink-0 w-10 h-10 bg-[var(--color-primary)] border-2 border-black text-white flex items-center justify-center text-sm font-black">
                   {index + 1}
                 </span>
                 <div className="flex-1">
-                  <p className="text-gray-800 font-medium">
+                  <p className="text-black font-bold">
                     {question.question_text}
                     {question.is_required && (
                       <span className="text-red-500 ml-1">*</span>
@@ -298,7 +302,7 @@ export default function SurveyResponseContent({
 
               {question.question_type === "scale" && (
                 <div className="mt-4">
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
+                  <div className="flex items-center justify-between text-xs font-bold text-gray-500 uppercase mb-3">
                     <span>{question.scale_labels?.min || "매우 불만족"}</span>
                     <span>{question.scale_labels?.max || "매우 만족"}</span>
                   </div>
@@ -315,10 +319,10 @@ export default function SurveyResponseContent({
                         <button
                           key={value}
                           onClick={() => handleAnswer(question.id, value)}
-                          className={`w-12 h-12 rounded-full font-medium transition-all ${
+                          className={`w-12 h-12 font-black transition-all duration-100 border-3 border-black ${
                             isSelected
-                              ? "bg-blue-600 text-white scale-110 shadow-lg"
-                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                              ? "bg-[var(--color-primary)] text-white shadow-[4px_4px_0px_#0a0a0a] translate-x-[-2px] translate-y-[-2px]"
+                              : "bg-white text-black hover:bg-gray-100"
                           }`}
                         >
                           {value}
@@ -333,7 +337,7 @@ export default function SurveyResponseContent({
                 <textarea
                   value={(answers[question.id] as string) || ""}
                   onChange={(e) => handleAnswer(question.id, e.target.value)}
-                  className="w-full mt-2 p-4 border border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full mt-2 p-4 border-3 border-black resize-none focus:outline-none focus:shadow-[4px_4px_0px_#0a0a0a] focus:translate-x-[-2px] focus:translate-y-[-2px] transition-all duration-100 font-medium"
                   rows={4}
                   placeholder="답변을 입력해 주세요..."
                 />
@@ -348,10 +352,10 @@ export default function SurveyResponseContent({
                         <button
                           key={optIdx}
                           onClick={() => handleAnswer(question.id, option)}
-                          className={`w-full p-4 rounded-xl text-left transition-all ${
+                          className={`w-full p-4 text-left transition-all duration-100 border-3 border-black font-bold ${
                             isSelected
-                              ? "bg-blue-600 text-white"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                              ? "bg-[var(--color-primary)] text-white shadow-[4px_4px_0px_#0a0a0a] translate-x-[-2px] translate-y-[-2px]"
+                              : "bg-white text-black hover:bg-gray-100"
                           }`}
                         >
                           {option}
@@ -366,14 +370,14 @@ export default function SurveyResponseContent({
       </div>
 
       {/* Submit Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t-3 border-black">
         {error && (
-          <p className="text-red-500 text-sm text-center mb-2">{error}</p>
+          <p className="text-red-500 text-sm text-center mb-2 font-bold uppercase">{error}</p>
         )}
         <button
           onClick={handleSubmit}
           disabled={submitting}
-          className="w-full max-w-lg mx-auto block py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50"
+          className="w-full max-w-lg mx-auto block py-4 bg-[var(--color-primary)] text-white font-black uppercase tracking-wide border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0"
         >
           {submitting ? "제출 중..." : "설문 제출하기"}
         </button>

@@ -15,11 +15,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] shadow-lg shadow-[var(--color-primary)]/25",
+    "bg-[var(--color-primary)] text-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none",
   secondary:
-    "bg-white text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)]/5",
-  ghost: "bg-transparent text-[var(--color-foreground)] hover:bg-gray-100",
-  danger: "bg-red-500 text-white hover:bg-red-600 shadow-lg shadow-red-500/25",
+    "bg-[var(--color-secondary)] text-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none",
+  ghost:
+    "bg-white text-[var(--color-foreground)] border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none",
+  danger:
+    "bg-red-500 text-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -50,10 +52,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         className={`
           inline-flex items-center justify-center gap-2
-          font-semibold rounded-xl
-          transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50
-          disabled:opacity-50 disabled:cursor-not-allowed
+          font-bold uppercase tracking-wide
+          transition-all duration-100
+          focus:outline-none focus:ring-4 focus:ring-[var(--color-primary)]/50
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0
           ${variantStyles[variant]}
           ${sizeStyles[size]}
           ${className}
@@ -61,7 +63,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading ? (
-          <span className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
+          <span className="animate-spin h-4 w-4 border-3 border-current border-t-transparent" />
         ) : icon ? (
           <span className="flex-shrink-0">{icon}</span>
         ) : null}

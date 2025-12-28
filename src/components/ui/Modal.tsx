@@ -52,9 +52,9 @@ export function Modal({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      {/* Backdrop */}
+      {/* Backdrop - Brutalist style with pattern */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/70"
         onClick={onClose}
         data-testid="modal-backdrop"
       />
@@ -67,19 +67,19 @@ export function Modal({
           aria-labelledby={title ? "modal-title" : undefined}
           className={`
             relative w-full ${sizeStyles[size]}
-            bg-white rounded-2xl shadow-xl
-            transform transition-all
+            bg-white border-3 border-black
+            shadow-[8px_8px_0px_#0a0a0a]
             animate-fadeIn
           `}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           {(title || showCloseButton) && (
-            <div className="flex items-center justify-between p-4 border-b border-gray-100">
+            <div className="flex items-center justify-between p-4 border-b-3 border-black bg-[var(--color-primary)]">
               {title && (
                 <h2
                   id="modal-title"
-                  className="text-lg font-semibold text-[var(--color-foreground)]"
+                  className="text-lg font-bold uppercase tracking-wide text-white"
                 >
                   {title}
                 </h2>
@@ -88,10 +88,10 @@ export function Modal({
                 <button
                   onClick={onClose}
                   aria-label="Close modal"
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 bg-white border-2 border-black shadow-[2px_2px_0px_#0a0a0a] hover:shadow-[4px_4px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100"
                 >
                   <svg
-                    className="w-5 h-5 text-gray-500"
+                    className="w-5 h-5 text-black"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -99,7 +99,7 @@ export function Modal({
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={2}
+                      strokeWidth={3}
                       d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>

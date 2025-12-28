@@ -35,17 +35,17 @@ function LoginForm() {
     <>
       {/* Error Message */}
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
+        <div className="mb-4 p-3 bg-red-400 border-3 border-black shadow-[4px_4px_0px_#0a0a0a] text-black font-bold uppercase text-sm">
           {error}
         </div>
       )}
 
       {/* Login Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-[var(--color-foreground)] mb-1"
+            className="block text-sm font-bold uppercase tracking-wide text-black mb-2"
           >
             이메일
           </label>
@@ -56,7 +56,7 @@ function LoginForm() {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            className="input-field"
+            className="w-full px-4 py-3 bg-white border-3 border-black font-medium transition-all duration-100 focus:outline-none focus:shadow-[4px_4px_0px_#0a0a0a] focus:translate-x-[-2px] focus:translate-y-[-2px] disabled:opacity-50"
             placeholder="master@example.com"
             required
             disabled={loading}
@@ -66,7 +66,7 @@ function LoginForm() {
         <div>
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-[var(--color-foreground)] mb-1"
+            className="block text-sm font-bold uppercase tracking-wide text-black mb-2"
           >
             비밀번호
           </label>
@@ -77,7 +77,7 @@ function LoginForm() {
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
-            className="input-field"
+            className="w-full px-4 py-3 bg-white border-3 border-black font-medium transition-all duration-100 focus:outline-none focus:shadow-[4px_4px_0px_#0a0a0a] focus:translate-x-[-2px] focus:translate-y-[-2px] disabled:opacity-50"
             placeholder="••••••••"
             required
             disabled={loading}
@@ -87,30 +87,11 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full py-4 bg-[var(--color-primary)] text-white font-bold uppercase tracking-wide border-3 border-black shadow-[4px_4px_0px_#0a0a0a] transition-all duration-100 hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 flex items-center justify-center gap-2"
         >
           {loading ? (
             <>
-              <svg
-                className="animate-spin h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                />
-              </svg>
+              <span className="animate-spin h-5 w-5 border-3 border-white border-t-transparent" />
               로그인 중...
             </>
           ) : (
@@ -124,10 +105,10 @@ function LoginForm() {
 
 function LoginFormFallback() {
   return (
-    <div className="space-y-4">
-      <div className="h-16 bg-gray-100 rounded animate-pulse" />
-      <div className="h-16 bg-gray-100 rounded animate-pulse" />
-      <div className="h-12 bg-gray-100 rounded animate-pulse" />
+    <div className="space-y-6">
+      <div className="h-20 bg-gray-200 border-3 border-black animate-pulse" />
+      <div className="h-20 bg-gray-200 border-3 border-black animate-pulse" />
+      <div className="h-14 bg-gray-200 border-3 border-black animate-pulse" />
     </div>
   );
 }
@@ -135,15 +116,20 @@ function LoginFormFallback() {
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="glass-card p-8 w-full max-w-md animate-fadeIn">
+      <div className="bg-white border-3 border-black shadow-[8px_8px_0px_#0a0a0a] p-8 w-full max-w-md animate-fadeIn">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-bold text-[var(--color-primary)]">
-              HRD Survey Pro
+          <div className="inline-block bg-[var(--color-primary)] px-4 py-2 border-3 border-black shadow-[4px_4px_0px_#0a0a0a] mb-4">
+            <span className="text-white text-2xl font-black">HRD</span>
+          </div>
+          <Link href="/" className="block">
+            <h1 className="text-3xl font-black uppercase tracking-tight text-black">
+              Survey Pro
             </h1>
           </Link>
-          <p className="text-[var(--color-muted)] mt-2">마스터 로그인</p>
+          <p className="text-black font-bold uppercase tracking-wide mt-2 text-sm">
+            마스터 로그인
+          </p>
         </div>
 
         <Suspense fallback={<LoginFormFallback />}>
@@ -151,8 +137,8 @@ export default function LoginPage() {
         </Suspense>
 
         {/* Footer */}
-        <div className="mt-8 pt-6 border-t border-[var(--color-border)]">
-          <p className="text-center text-xs text-[var(--color-muted)]">
+        <div className="mt-8 pt-6 border-t-3 border-black">
+          <p className="text-center text-xs font-bold uppercase tracking-wide text-gray-600">
             이 시스템은 마스터 관리자 전용입니다.
           </p>
         </div>
