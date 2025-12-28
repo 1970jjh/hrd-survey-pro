@@ -116,10 +116,21 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Filter valid answers
-    const validAnswers = result.data.answers.filter((a) =>
-      questionMap.has(a.questionId)
-    );
+    // Filter valid answers and remove undefined values (Firebase doesn't accept undefined)
+    const validAnswers = result.data.answers
+      .filter((a) => questionMap.has(a.questionId))
+      .map((a) => {
+        const answer: { questionId: string; scoreValue?: number; textValue?: string } = {
+          questionId: a.questionId,
+        };
+        if (a.scoreValue !== undefined) {
+          answer.scoreValue = a.scoreValue;
+        }
+        if (a.textValue !== undefined) {
+          answer.textValue = a.textValue;
+        }
+        return answer;
+      });
 
     if (validAnswers.length === 0) {
       return NextResponse.json(
@@ -128,14 +139,26 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Create response
-    await createResponse({
+    // Create response - remove undefined fields for Firebase
+    const responseData: {
+      surveyId: string;
+      sessionId: string;
+      answers: typeof validAnswers;
+      submittedAt: Timestamp;
+      respondentName?: string;
+    } = {
       surveyId: survey.id,
       sessionId,
-      respondentName: result.data.respondentName,
       answers: validAnswers,
       submittedAt: Timestamp.now(),
-    });
+    };
+
+    // Only add respondentName if it exists
+    if (result.data.respondentName) {
+      responseData.respondentName = result.data.respondentName;
+    }
+
+    await createResponse(responseData);
 
     return NextResponse.json({
       success: true,
