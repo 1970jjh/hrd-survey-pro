@@ -35,7 +35,7 @@ function formatMessage(text: string): React.ReactNode {
           }
         >
           {listItems.map((item, i) => (
-            <li key={i} className="text-[var(--color-foreground)]">
+            <li key={i} className="text-black font-medium">
               {formatInline(item)}
             </li>
           ))}
@@ -62,7 +62,7 @@ function formatMessage(text: string): React.ReactNode {
       parts.push(
         <strong
           key={match.index}
-          className="font-semibold text-[var(--color-primary)]"
+          className="font-black text-[var(--color-primary)]"
         >
           {match[1] || match[2]}
         </strong>
@@ -87,7 +87,7 @@ function formatMessage(text: string): React.ReactNode {
       elements.push(
         <h4
           key={index}
-          className="font-bold text-[var(--color-foreground)] mt-3 mb-1"
+          className="font-black text-black mt-3 mb-1 uppercase"
         >
           {formatInline(trimmedLine.slice(4))}
         </h4>
@@ -97,7 +97,7 @@ function formatMessage(text: string): React.ReactNode {
       elements.push(
         <h3
           key={index}
-          className="font-bold text-lg text-[var(--color-foreground)] mt-4 mb-2"
+          className="font-black text-lg text-black mt-4 mb-2 uppercase"
         >
           {formatInline(trimmedLine.slice(3))}
         </h3>
@@ -107,7 +107,7 @@ function formatMessage(text: string): React.ReactNode {
       elements.push(
         <h2
           key={index}
-          className="font-bold text-xl text-[var(--color-foreground)] mt-4 mb-2"
+          className="font-black text-xl text-black mt-4 mb-2 uppercase"
         >
           {formatInline(trimmedLine.slice(2))}
         </h2>
@@ -138,7 +138,7 @@ function formatMessage(text: string): React.ReactNode {
     else {
       flushList();
       elements.push(
-        <p key={index} className="text-[var(--color-foreground)] my-1">
+        <p key={index} className="text-black my-1 font-medium">
           {formatInline(trimmedLine)}
         </p>
       );
@@ -337,27 +337,27 @@ export default function AdminChatbot() {
 
   return (
     <>
-      {/* Chat Button */}
+      {/* Chat Button - Brutalist */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
+        className={`fixed bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center transition-all duration-100 border-3 border-black ${
           isOpen
-            ? "bg-gray-600 hover:bg-gray-700 rotate-90"
-            : "bg-gradient-to-br from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
+            ? "bg-gray-400 shadow-none translate-x-[2px] translate-y-[2px]"
+            : "bg-[var(--color-secondary)] shadow-[4px_4px_0px_#0a0a0a] hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px]"
         }`}
         aria-label={isOpen ? "채팅 닫기" : "AI 어시스턴트"}
       >
         {isOpen ? (
           <svg
-            className="w-6 h-6 text-white"
+            className="w-6 h-6 text-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            strokeWidth={3}
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
@@ -367,22 +367,22 @@ export default function AdminChatbot() {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            strokeWidth={2}
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
               d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
             />
           </svg>
         )}
       </button>
 
-      {/* Chat Window */}
+      {/* Chat Window - Brutalist */}
       {isOpen && (
         <div
           ref={chatWindowRef}
-          className="fixed bottom-24 right-6 z-50 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 animate-slideUp"
+          className="fixed bottom-24 right-6 z-50 bg-white border-3 border-black shadow-[8px_8px_0px_#0a0a0a] flex flex-col overflow-hidden animate-fadeIn"
           style={{
             width: `${size.width}px`,
             height: `${size.height}px`,
@@ -393,122 +393,110 @@ export default function AdminChatbot() {
           {/* Resize Handles */}
           {/* Top-Left Corner */}
           <div
-            className="absolute top-0 left-0 w-4 h-4 cursor-nwse-resize z-10 hover:bg-blue-200/50 rounded-tl-2xl"
+            className="absolute top-0 left-0 w-4 h-4 cursor-nwse-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "nw")}
           />
           {/* Top Edge */}
           <div
-            className="absolute top-0 left-4 right-4 h-2 cursor-ns-resize z-10 hover:bg-blue-200/50"
+            className="absolute top-0 left-4 right-4 h-2 cursor-ns-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "n")}
           />
           {/* Top-Right Corner */}
           <div
-            className="absolute top-0 right-0 w-4 h-4 cursor-nesw-resize z-10 hover:bg-blue-200/50 rounded-tr-2xl"
+            className="absolute top-0 right-0 w-4 h-4 cursor-nesw-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "ne")}
           />
           {/* Left Edge */}
           <div
-            className="absolute top-4 left-0 bottom-4 w-2 cursor-ew-resize z-10 hover:bg-blue-200/50"
+            className="absolute top-4 left-0 bottom-4 w-2 cursor-ew-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "w")}
           />
           {/* Right Edge */}
           <div
-            className="absolute top-4 right-0 bottom-4 w-2 cursor-ew-resize z-10 hover:bg-blue-200/50"
+            className="absolute top-4 right-0 bottom-4 w-2 cursor-ew-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "e")}
           />
           {/* Bottom-Left Corner */}
           <div
-            className="absolute bottom-0 left-0 w-4 h-4 cursor-nesw-resize z-10 hover:bg-blue-200/50 rounded-bl-2xl"
+            className="absolute bottom-0 left-0 w-4 h-4 cursor-nesw-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "sw")}
           />
           {/* Bottom Edge */}
           <div
-            className="absolute bottom-0 left-4 right-4 h-2 cursor-ns-resize z-10 hover:bg-blue-200/50"
+            className="absolute bottom-0 left-4 right-4 h-2 cursor-ns-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "s")}
           />
           {/* Bottom-Right Corner */}
           <div
-            className="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize z-10 hover:bg-blue-200/50 rounded-br-2xl"
+            className="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize z-10 hover:bg-[var(--color-primary)]/30"
             onMouseDown={(e) => handleResizeStart(e, "se")}
           />
 
-          {/* Header */}
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-3 flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+          {/* Header - Brutalist */}
+          <div className="bg-[var(--color-secondary)] px-4 py-3 flex items-center gap-3 border-b-3 border-black">
+            <div className="w-10 h-10 bg-white border-2 border-black flex items-center justify-center">
+              <span className="text-xl font-black text-black">AI</span>
             </div>
             <div className="flex-1">
-              <h3 className="text-white font-semibold">AI 어시스턴트</h3>
-              <p className="text-white/70 text-xs">HRD Survey Pro 도우미</p>
+              <h3 className="text-white font-black uppercase">AI 어시스턴트</h3>
+              <p className="text-white/70 text-xs font-bold uppercase">HRD Survey Pro</p>
             </div>
             {/* Reset Size Button */}
             <button
               onClick={resetSize}
-              className="text-white/50 hover:text-white transition-colors p-1"
+              className="p-1 bg-white border-2 border-black shadow-[2px_2px_0px_#0a0a0a] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-100"
               title="크기 초기화"
             >
               <svg
-                className="w-4 h-4"
+                className="w-4 h-4 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                strokeWidth={2}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
                   d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
                 />
               </svg>
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/70 hover:text-white transition-colors"
+              className="p-1 bg-white border-2 border-black shadow-[2px_2px_0px_#0a0a0a] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-100"
             >
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                strokeWidth={3}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
             </button>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+          {/* Messages - Brutalist */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-100">
             {messages.map((message, index) => (
               <div
                 key={index}
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[85%] px-4 py-3 border-2 border-black ${
                     message.role === "user"
-                      ? "bg-blue-600 text-white rounded-br-md"
-                      : "bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-md"
+                      ? "bg-[var(--color-primary)] text-white shadow-[2px_2px_0px_#0a0a0a]"
+                      : "bg-white text-black shadow-[2px_2px_0px_#0a0a0a]"
                   }`}
                 >
                   {message.role === "user" ? (
-                    <div className="whitespace-pre-wrap">{message.content}</div>
+                    <div className="whitespace-pre-wrap font-bold">{message.content}</div>
                   ) : (
                     <div className="text-sm leading-relaxed">
                       {formatMessage(message.content)}
@@ -519,23 +507,23 @@ export default function AdminChatbot() {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-sm border border-gray-100">
+                <div className="bg-white border-2 border-black px-4 py-3 shadow-[2px_2px_0px_#0a0a0a]">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       <span
-                        className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+                        className="w-2 h-2 bg-[var(--color-primary)] animate-bounce"
                         style={{ animationDelay: "0ms" }}
                       />
                       <span
-                        className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+                        className="w-2 h-2 bg-[var(--color-primary)] animate-bounce"
                         style={{ animationDelay: "150ms" }}
                       />
                       <span
-                        className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+                        className="w-2 h-2 bg-[var(--color-primary)] animate-bounce"
                         style={{ animationDelay: "300ms" }}
                       />
                     </div>
-                    <span className="text-sm text-gray-500">생각 중...</span>
+                    <span className="text-sm font-bold text-black uppercase">생각 중...</span>
                   </div>
                 </div>
               </div>
@@ -543,62 +531,45 @@ export default function AdminChatbot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-3 border-t border-gray-200 bg-white">
+          {/* Input - Brutalist */}
+          <div className="p-3 border-t-3 border-black bg-white">
             <div className="flex items-end gap-2">
               <textarea
                 ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="메시지를 입력하세요... (Shift+Enter: 줄바꿈)"
-                className="flex-1 resize-none border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent max-h-[120px] min-h-[40px]"
+                placeholder="메시지를 입력하세요..."
+                className="flex-1 resize-none border-3 border-black px-4 py-2 text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0px_#0a0a0a] focus:translate-x-[-1px] focus:translate-y-[-1px] transition-all duration-100 max-h-[120px] min-h-[40px]"
                 rows={1}
                 disabled={isLoading}
               />
               <button
                 onClick={handleSubmit}
                 disabled={!input.trim() || isLoading}
-                className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+                className="w-10 h-10 bg-[var(--color-primary)] text-white flex items-center justify-center border-3 border-black shadow-[2px_2px_0px_#0a0a0a] hover:shadow-[4px_4px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 transition-all duration-100 flex-shrink-0"
               >
                 <svg
                   className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth={3}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                   />
                 </svg>
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1 text-center">
-              Enter로 전송 · Shift+Enter로 줄바꿈 · 모서리를 드래그하여 크기
-              조절
+            <p className="text-xs font-bold text-gray-500 mt-1 text-center uppercase">
+              Enter 전송 · Shift+Enter 줄바꿈
             </p>
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slideUp {
-          animation: slideUp 0.3s ease-out;
-        }
-      `}</style>
     </>
   );
 }

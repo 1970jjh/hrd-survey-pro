@@ -25,8 +25,8 @@ export function Card({
   return (
     <div
       className={`
-        glass-card
-        ${hover ? "glass-card-hover cursor-pointer" : ""}
+        bg-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a]
+        ${hover ? "transition-all duration-100 cursor-pointer hover:shadow-[6px_6px_0px_#0a0a0a] hover:translate-x-[-2px] hover:translate-y-[-2px]" : ""}
         ${paddingStyles[padding]}
         ${className}
       `}
@@ -50,7 +50,7 @@ export function CardHeader({
 }: CardHeaderProps) {
   return (
     <div className={`flex items-center justify-between mb-4 ${className}`}>
-      <h3 className="text-lg font-semibold text-[var(--color-foreground)]">
+      <h3 className="text-lg font-bold uppercase tracking-wide text-[var(--color-foreground)]">
         {children}
       </h3>
       {action && <div>{action}</div>}
@@ -74,7 +74,7 @@ interface CardFooterProps {
 
 export function CardFooter({ children, className = "" }: CardFooterProps) {
   return (
-    <div className={`mt-4 pt-4 border-t border-gray-100 ${className}`}>
+    <div className={`mt-4 pt-4 border-t-3 border-black ${className}`}>
       {children}
     </div>
   );

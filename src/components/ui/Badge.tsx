@@ -13,11 +13,11 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default: "bg-gray-100 text-gray-600",
-  success: "bg-green-100 text-green-600",
-  warning: "bg-yellow-100 text-yellow-600",
-  error: "bg-red-100 text-red-600",
-  info: "bg-blue-100 text-blue-600",
+  default: "bg-gray-100 text-black border-black",
+  success: "bg-green-400 text-black border-black",
+  warning: "bg-yellow-400 text-black border-black",
+  error: "bg-red-400 text-black border-black",
+  info: "bg-[var(--color-primary)] text-white border-black",
 };
 
 const sizeStyles: Record<BadgeSize, string> = {
@@ -34,7 +34,8 @@ export function Badge({
   return (
     <span
       className={`
-        inline-flex items-center font-medium rounded-full
+        inline-flex items-center font-bold uppercase tracking-wide
+        border-2 shadow-[2px_2px_0px_#0a0a0a]
         ${variantStyles[variant]}
         ${sizeStyles[size]}
         ${className}
